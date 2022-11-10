@@ -4,8 +4,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <body>
+  
     <header>
+      <body>
       <img
         alt="Bank logo"
         class="logo"
@@ -22,15 +23,15 @@ import HelloWorld from "./components/HelloWorld.vue";
           <RouterLink to="/about">About</RouterLink>
         </nav>
       </div>
+      </body>
     </header>
-  </body>
   
   <RouterView />
 </template>
 
 <style scoped>
 body {
- background-image: url("./assets/office-1574717_1920.jpg");
+ background-image: url("./assets/money-2696229_1920.jpg");
  background-color: #cccccc;
 }
 

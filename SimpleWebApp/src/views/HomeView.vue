@@ -21,9 +21,11 @@ setTimeout(function () {
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <body>
+    <main>
+      <TheWelcome />
+    </main>
+  </body>
 </template>
 
 <style>
