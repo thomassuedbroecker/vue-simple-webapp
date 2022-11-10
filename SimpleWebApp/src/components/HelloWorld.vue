@@ -7,18 +7,54 @@ defineProps({
 });
 </script>
 
+<script>
+
+export default {
+  // Properties returned from data() become reactive state
+  // and will be exposed on `this`.
+  data() {
+    return {
+      count: 0,
+      }
+  },
+
+  // Methods are functions that mutate state and trigger updates.
+  // They can be bound as event listeners in templates.
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+
+  // Lifecycle hooks are called at different stages
+  // of a component's lifecycle.
+  // This function will be called when the component is mounted.
+  mounted() {
+    console.log(`The initial count is ${this.count}.`)
+  },
+}
+</script>
+
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
-  </div>
+
+    <div class="greetings">
+        <h1 class="green">{{ msg }}</h1>
+        <h3>
+          You’ve successfully created a project with
+          <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
+          <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+        </h3>
+    </div>
+    <div>
+      <button @click="count++">
+        Count is: {{ count }}
+      </button>
+    </div>
+
 </template>
 
 <style scoped>
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;

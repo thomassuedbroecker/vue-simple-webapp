@@ -4,29 +4,36 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+  <body>
+    <header>
+      <img
+        alt="Bank logo"
+        class="logo"
+        src="@/assets/credit-card-1369111.svg"
+        width="400"
+        height="400"
+      />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <div class="wrapper">
+        <HelloWorld msg="We are available 24/7 for you!" />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
+  </body>
+  
   <RouterView />
 </template>
 
 <style scoped>
+body {
+ background-image: url("./assets/office-1574717_1920.jpg");
+ background-color: #cccccc;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
