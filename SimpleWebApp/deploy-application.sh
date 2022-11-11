@@ -69,8 +69,9 @@ function setupCLIenvCE() {
 
 function createSecrets() {
     
-    ibmcloud ce secret create --name application.user --from-literal "USER=admin"
-    ibmcloud ce secret create --name application.password --from-literal "PASSWORD=admin"
+    ibmcloud ce secret create --name assistant.integration_id --from-literal "ASSISTANT_INTEGRATION_ID=$ASSISTANT_INTEGRATION_ID"
+    ibmcloud ce secret create --name assistant.region --from-literal "ASSISTANT_REGION=$ASSISTANT_REGION"
+    ibmcloud ce secret create --name assistant.service_instance_id --from-literal "ASSISTANT_SERVICE_INSTANCE_ID=$ASSISTANT_SERVICE_INSTANCE_ID"
 
 }
 
@@ -78,29 +79,29 @@ function createSecrets() {
 
 function deployExtension(){
 
-    ibmcloud ce application create --name assistant-extension --image "$VUE_IMAGE" \
+    ibmcloud ce application create --name assistant-web-app --image "$VUE_IMAGE" \
                                    --cpu "0.5" \
                                    --memory "1G" \
-                                   --env EXTENSION_USAGE="code-engine usage" \
-                                   --env-from-secret application.user \
-                                   --env-from-secret application.password \
+                                   --env-from-secret assistant.integration_id \
+                                   --env-from-secret assistant.region \
+                                   --env-from-secret assistant.service_instance_id \
                                    --max-scale 1 \
                                    --min-scale 0 \
                                    --concurrency-target 10 \
-                                   --port 3000                                       
+                                   --port 8080                                       
     
-    ibmcloud ce application get --name assistant-extension
+    ibmcloud ce application get --name assistant-web-app
     
     # Change autoscaling for articles configuration
 
-    kn service update assistant-extension --annotation-revision autoscaling.knative.dev/scaleToZeroPodRetentionPeriod=5m
-    ibmcloud ce application get --name assistant-extension -o json > temp-assistant-extension.json
-    CURRENT_CONFIG=$(cat ./temp-assistant-extension.json| jq '.status.latestReadyRevisionName' | sed 's/"//g')
+    kn service update assistant-web-app --annotation-revision autoscaling.knative.dev/scaleToZeroPodRetentionPeriod=5m
+    ibmcloud ce application get --name assistant-web-app -o json > temp-assistant-web-app.json
+    CURRENT_CONFIG=$(cat ./temp-assistant-web-app.json| jq '.status.latestReadyRevisionName' | sed 's/"//g')
     echo "Current config: $CURRENT_CONFIG"
-    rm temp-assistant-extension.json
+    rm temp-assistant-web-app.json
     kn revision describe $CURRENT_CONFIG --verbose
 
-    ASSISTANT_EXTENSION_URL=$(ibmcloud ce application get --name assistant-extension -o url)
+    ASSISTANT_WEB_URL=$(ibmcloud ce application get --name assistant-web-app -o url)
 }
 
 # **** Kubernetes CLI ****
@@ -124,16 +125,6 @@ function getKubeContainerLogs(){
     ASSISTANT_EXTENSION_LOG=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $1}')
     echo $ASSISTANT_EXTENSION_LOG
     kubectl logs $ASSISTANT_EXTENSION
-}
-
-function createOpenAPIspecification(){
-  JSON_FORMAT_TEMPLATE=assistant-extension.json-template
-  JSON_FORMAT=assistant-extension.json
-  YAML_FORMAT_TEMPLATE=assistant-extension.yaml-template
-  YAML_FORMAT=assistant-extension.yaml
-
-  sed "s+CODE_ENGINE_APPLICATION_URL+$ASSISTANT_EXTENSION_URL+g" "$ROOT_FOLDER/$JSON_FORMAT_TEMPLATE" > "$ROOT_FOLDER/$JSON_FORMAT"
-  sed "s+CODE_ENGINE_APPLICATION_URL+$ASSISTANT_EXTENSION_URL+g" "$ROOT_FOLDER/$YAML_FORMAT_TEMPLATE" > "$ROOT_FOLDER/$YAML_FORMAT"
 }
 
 # **********************************************************************************
@@ -178,12 +169,6 @@ echo "************************************"
 getKubeContainerLogs
 
 echo "************************************"
-echo " Create OpenAPI specification"
-echo "************************************"
-
-createOpenAPIspecification
-
-echo "************************************"
 echo " URLs"
 echo "************************************"
-echo " - Extension  : $ASSISTANT_EXTENSION_URL"
+echo " - Extension  : $ASSISTANT_WEB_URL"
