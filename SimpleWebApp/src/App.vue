@@ -4,9 +4,8 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  
+  <body>
     <header>
-      <body>
       <img
         alt="Bank logo"
         class="logo"
@@ -16,16 +15,16 @@ import HelloWorld from "./components/HelloWorld.vue";
       />
 
       <div class="wrapper">
-        <HelloWorld msg="We are available 24/7 for you!" />
-
+        <HelloWorld msg="Happy Banking!" />
+        
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
         </nav>
       </div>
-      </body>
+
     </header>
-  
+  </body>
   <RouterView />
 </template>
 
