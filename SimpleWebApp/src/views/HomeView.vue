@@ -5,6 +5,22 @@ console.log("-->log ASSISTANT_INTEGRATION_ID : " + window.ASSISTANT_INTEGRATION_
 console.log("-->log ASSISTANT_REGION : " + window.ASSISTANT_REGION);
 console.log("-->log ASSISTANT_SERVICE_INSTANCE_ID : " + window.ASSISTANT_SERVICE_INSTANCE_ID);
 
+// Your custom service desk integration which can be located anywhere in your codebase.
+class MyServiceDesk {
+    constructor(callback) {
+      this.callback = callback;
+    }
+    startChat() {
+      console.log('Starting chat');
+    }
+    endChat() {
+      console.log('Ending chat');
+    }
+    sendMessageToAgent() {
+      console.log('Sending message to agent');
+    }
+}
+
 window.watsonAssistantChatOptions = {
   integrationID: window.ASSISTANT_INTEGRATION_ID, // The ID of this integration.
   region: window.ASSISTANT_REGION, // The region your integration is hosted in.
@@ -12,6 +28,9 @@ window.watsonAssistantChatOptions = {
   onLoad: function (instance) {
     instance.render();
   },
+
+  // **** The important part. This creates an instance of your integration.
+  serviceDeskFactory: (parameters) => new MyServiceDesk(parameters.callback),
 };
 
 setTimeout(function () {
