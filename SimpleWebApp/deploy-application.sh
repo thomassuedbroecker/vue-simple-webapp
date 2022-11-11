@@ -53,14 +53,13 @@ function setupCLIenvCE() {
   echo "Namespace: $NAMESPACE"
   kubectl get pods -n $NAMESPACE
 
-  CHECK=$(ibmcloud ce project get -n $PROJECT_NAME | awk '/Apps/ {print $2;}')
-  echo "**********************************"
-  echo "Check for existing apps? '$CHECK'"
-  echo "**********************************"
+  ibmcloud ce application get --name assistant-extension
+  CHECK=$(ibmcloud ce application list | grep assistant-web-app)
+
   if [ $CHECK != 0 ];
   then
-    echo "Error: There are remaining '$CHECK' apps."
-    echo "Wait until all apps are deleted inside the $PROJECT_NAME."
+    echo "Error: There is a remaining 'assistant-web-app'."
+    echo "Wait until app is deleted inside the $PROJECT_NAME."
     echo "The script exits here!"
     exit 1
   fi
