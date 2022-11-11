@@ -50,4 +50,5 @@ RUN chmod 777 /etc/nginx
 USER nginxuser
 
 EXPOSE 8080
-CMD ["/bin/sh","docker_entrypoint.sh"]
+# for verification
+#CMD ["/bin/sh","docker_entrypoint.sh"]
