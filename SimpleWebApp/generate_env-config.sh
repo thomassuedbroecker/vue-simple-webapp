@@ -3,9 +3,9 @@
 ########################################
 # Create a file based on the environment variables
 # given by the dockerc run -e parameter
-# - VUE_APP_ROOT
-# - VUE_APP_KEYCLOAK
-# - VUE_APP_WEBAPI
+# - ASSISTANT_INTEGRATION_ID
+# - ASSISTANT_REGION
+# - ASSISTANT_SERVICE_INSTANCE_ID
 ########################################
 cat <<EOF
 window.ASSISTANT_INTEGRATION_ID="${ASSISTANT_INTEGRATION_ID}"

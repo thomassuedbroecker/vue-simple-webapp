@@ -12,7 +12,7 @@ echo " Verify container locally"
 echo "************************************"
 
 echo "************************************"
-echo " Build and run extension example"
+echo " Build simple webapp example"
 echo "************************************"
 
 $CONTAINER_RUNTIME image list
@@ -23,7 +23,15 @@ $CONTAINER_RUNTIME image rm -f $IMAGE_NAME
 
 $CONTAINER_RUNTIME build -t $IMAGE_NAME -f Dockerfile .
 
+echo "************************************"
+echo " List containers"
+echo "************************************"
+
 $CONTAINER_RUNTIME container list
+
+echo "************************************"
+echo " Run simple webapp example container"
+echo "************************************"
 
 $CONTAINER_RUNTIME run --name=$CONTAINER_NAME \
            -it \
@@ -33,4 +41,4 @@ $CONTAINER_RUNTIME run --name=$CONTAINER_NAME \
            -p 8080:8080 \
            $IMAGE_NAME
 
-$CONTAINER_RUNTIME port --all 
+# $CONTAINER_RUNTIME port --all 
