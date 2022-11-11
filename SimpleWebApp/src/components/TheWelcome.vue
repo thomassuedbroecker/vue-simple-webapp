@@ -32,7 +32,7 @@ import SupportIcon from "./icons/IconSupport.vue";
     </template>
     <template #heading>Ecosystem</template>
 
-    The your advantage us our ecosystem of partners around the world.
+    Take the advantage and use our ecosystem of partners around the world.
   </WelcomeItem>
 
   <WelcomeItem>
