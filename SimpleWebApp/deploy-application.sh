@@ -55,8 +55,8 @@ function setupCLIenvCE() {
 
   ibmcloud ce application get --name assistant-extension
   CHECK=$(ibmcloud ce application list | grep assistant-web-app)
-
-  if [ $CHECK != 0 ];
+  echo "Check: ($CHECK)"
+  if [[ $CHECK != "" ]];
   then
     echo "Error: There is a remaining 'assistant-web-app'."
     echo "Wait until app is deleted inside the $PROJECT_NAME."
@@ -68,9 +68,9 @@ function setupCLIenvCE() {
 
 function createSecrets() {
     
-    ibmcloud ce secret create --name assistant.integration_id --from-literal "ASSISTANT_INTEGRATION_ID=$ASSISTANT_INTEGRATION_ID"
+    ibmcloud ce secret create --name assistant.integration-id --from-literal "ASSISTANT_INTEGRATION_ID=$ASSISTANT_INTEGRATION_ID"
     ibmcloud ce secret create --name assistant.region --from-literal "ASSISTANT_REGION=$ASSISTANT_REGION"
-    ibmcloud ce secret create --name assistant.service_instance_id --from-literal "ASSISTANT_SERVICE_INSTANCE_ID=$ASSISTANT_SERVICE_INSTANCE_ID"
+    ibmcloud ce secret create --name assistant.service-instance-id --from-literal "ASSISTANT_SERVICE_INSTANCE_ID=$ASSISTANT_SERVICE_INSTANCE_ID"
 
 }
 
@@ -81,9 +81,9 @@ function deployExtension(){
     ibmcloud ce application create --name assistant-web-app --image "$VUE_IMAGE" \
                                    --cpu "0.5" \
                                    --memory "1G" \
-                                   --env-from-secret assistant.integration_id \
+                                   --env-from-secret assistant.integration-id \
                                    --env-from-secret assistant.region \
-                                   --env-from-secret assistant.service_instance_id \
+                                   --env-from-secret assistant.service-instance-id \
                                    --max-scale 1 \
                                    --min-scale 0 \
                                    --concurrency-target 10 \
