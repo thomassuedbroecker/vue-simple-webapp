@@ -14,7 +14,7 @@ import SupportIcon from "./icons/IconSupport.vue";
     </template>
     <template #heading>Welcome</template>
     
-    Have a nice day.
+    Have a nice day. Let's manage your today's fincance.
   </WelcomeItem>
 
   <WelcomeItem>
@@ -23,7 +23,7 @@ import SupportIcon from "./icons/IconSupport.vue";
     </template>
     <template #heading>Credits</template>
 
-    Checkout our new offerings. More instructions are available in <code>README.md</code>.
+    Checkout our new offerings.
   </WelcomeItem>
 
   <WelcomeItem>
@@ -32,7 +32,7 @@ import SupportIcon from "./icons/IconSupport.vue";
     </template>
     <template #heading>Ecosystem</template>
 
-    Use our ecosystem.
+    The your advantage us our ecosystem of partners around the world.
   </WelcomeItem>
 
   <WelcomeItem>
