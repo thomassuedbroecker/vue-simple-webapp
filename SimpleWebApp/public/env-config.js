@@ -1,6 +1,4 @@
-// used as 'environment' variables,
-// when we going to deploy to OpenShift
-// window.VUE_APP_ROOT="/cns/"
-window.VUE_APP_ROOT = "/"; // local
-window.VUE_APP_KEYCLOAK = "http://localhost:8282/auth";
-window.VUE_APP_WEPAPI = "http://localhost:8082/articels";
+// used as 'environment' variables
+window.ASSISTANT_INTEGRATION_ID="fb6dac0e-7249-4461-bf19-798d3b68505b"
+window.ASSISTANT_REGION="us-south"
+window.ASSISTANT_SERVICE_INSTANCE_ID="07061aa9-b6d8-427d-af36-947da5f8a12e"

@@ -30,7 +30,7 @@ $CONTAINER_RUNTIME run --name=$CONTAINER_NAME \
            -e ASSISTANT_INTEGRATION_ID="fb6dac0e-7249-4461-bf19-798d3b68505b" \
            -e ASSISTANT_REGION="us-south" \
            -e ASSISTANT_SERVICE_INSTANCE_ID="07061aa9-b6d8-427d-af36-947da5f8a12e" \
-           -p 3000:3000 \
+           -p 8080:8080 \
            $IMAGE_NAME
 
 $CONTAINER_RUNTIME port --all 

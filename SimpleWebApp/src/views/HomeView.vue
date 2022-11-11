@@ -1,10 +1,14 @@
 <script setup>
 import TheWelcome from "../components/TheWelcome.vue";
 
+console.log("-->log ASSISTANT_INTEGRATION_ID : " + window.ASSISTANT_INTEGRATION_ID );
+console.log("-->log ASSISTANT_REGION : " + window.ASSISTANT_REGION);
+console.log("-->log ASSISTANT_SERVICE_INSTANCE_ID : " + window.ASSISTANT_SERVICE_INSTANCE_ID);
+
 window.watsonAssistantChatOptions = {
-  integrationID: "fb6dac0e-7249-4461-bf19-798d3b68505b", // The ID of this integration.
-  region: "us-south", // The region your integration is hosted in.
-  serviceInstanceID: "07061aa9-b6d8-427d-af36-947da5f8a12e", // The ID of your service instance.
+  integrationID: window.ASSISTANT_INTEGRATION_ID, // The ID of this integration.
+  region: window.ASSISTANT_REGION, // The region your integration is hosted in.
+  serviceInstanceID: window.ASSISTANT_SERVICE_INSTANCE_ID, // The ID of your service instance.
   onLoad: function (instance) {
     instance.render();
   },
