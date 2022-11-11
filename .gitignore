@@ -103,3 +103,5 @@ dist
 # TernJS port file
 .tern-port
 SimpleWebApp/public/env-config.js
+.DS_Store
+.DS_Store
