@@ -2,13 +2,13 @@
 
 ### Create VUE application
 
-* Install with NPM
+#### Step 1: Install with NPM
 
 ```sh
 npm init vue@latest
 ``` 
 
-* Used configuration
+#### Step 2: Used configuration
 
 ```sh
 Vue.js - The Progressive JavaScript Framework
