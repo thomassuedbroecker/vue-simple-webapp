@@ -1,0 +1,2487 @@
+{
+    "name": "Example Banking Bot",
+    "type": "action",
+    "valid": true,
+    "status": "Available",
+    "created": "2022-11-07T15:06:43.645Z",
+    "updated": "2022-12-08T11:45:57.495Z",
+    "language": "en",
+    "skill_id": "7543a944-60ee-4c2d-89aa-af738f0253c3",
+    "workspace": {
+      "actions": [
+        {
+          "steps": [
+            {
+              "step": "step_757",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "The CVV is a unique 3 digit code that you can fin in the back of your credit or debit card."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_757"
+            }
+          ],
+          "title": "What is a CVV?",
+          "action": "action_10147",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "intent": "action_10147_intent_22782"
+          },
+          "variables": [
+            {
+              "title": "The CVV is a unique 3 digit code that you can fin in the back of",
+              "variable": "step_757",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "fallback",
+          "topic_switch": {
+            "allowed_from": true,
+            "allowed_into": true
+          },
+          "disambiguation_opt_out": false
+        },
+        {
+          "steps": [
+            {
+              "step": "step_938",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "To download our mobile app, visit Apple or Google app store on your mobile device and download the \"Example Banking\" app.\n\nWere you able to download it?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": {
+                          "input": {
+                            "text": "Yes"
+                          }
+                        }
+                      },
+                      {
+                        "label": "No",
+                        "value": {
+                          "input": {
+                            "text": "No"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I'm sorry, I did not catch that, please restate your response."
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "sys-yes-no",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_938",
+              "condition": {
+                "or": [
+                  {
+                    "and": [
+                      {
+                        "exists": {
+                          "skill_variable": "mobile_user"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "exists": {
+                          "skill_variable": "TravelLocation"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "next_step": "step_906"
+            },
+            {
+              "step": "step_906",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Great! Now you can use the app \"Example Banking\" transactions."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_906",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_938"
+                  },
+                  {
+                    "scalar": "yes"
+                  }
+                ]
+              },
+              "next_step": "step_873"
+            },
+            {
+              "step": "step_873",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "That is unfortunate. Call us at 1-800-900-8888 to speak with an expert that can help you."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_873",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_938"
+                  },
+                  {
+                    "scalar": "no"
+                  }
+                ]
+              }
+            }
+          ],
+          "title": "How do I get the mobile app?",
+          "action": "action_15665",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "intent": "action_15665_intent_14936"
+          },
+          "variables": [
+            {
+              "variable": "step_245_result_1",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_683_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "That is unfortunate. Call us at 1-800-900-8888 to speak with an ",
+              "variable": "step_873",
+              "data_type": "any"
+            },
+            {
+              "title": "Great! Now you can use the app \"Example Banking\" transactions.",
+              "variable": "step_906",
+              "data_type": "any"
+            },
+            {
+              "title": "To download our mobile app, visit Apple or Google app store on y",
+              "variable": "step_938",
+              "data_type": "yes_no"
+            },
+            {
+              "variable": "step_970_result_1",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "action_44755",
+          "topic_switch": {
+            "allowed_from": true,
+            "allowed_into": true
+          },
+          "disambiguation_opt_out": false
+        },
+        {
+          "steps": [
+            {
+              "step": "step_712",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Please wait while I retrieve your message ..."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "callout",
+                "callout": {
+                  "path": "/getmessage",
+                  "type": "integration_interaction",
+                  "method": "GET",
+                  "internal": {
+                    "catalog_item_id": "b82fd6ff-0850-4d84-9c90-600649eecee4"
+                  },
+                  "result_variable": "step_712_result_1"
+                }
+              },
+              "variable": "step_712",
+              "next_step": "step_138"
+            },
+            {
+              "step": "step_138",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Your message is: "
+                            },
+                            {
+                              "variable": "step_712_result_1",
+                              "variable_path": "body.message"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_138",
+              "condition": {
+                "exists": {
+                  "variable": "step_712_result_1",
+                  "variable_path": "body.message"
+                }
+              },
+              "next_step": "step_609"
+            },
+            {
+              "step": "step_609",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Sorry, we can't get any message at the moment please try it later."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_609",
+              "condition": {
+                "not": {
+                  "exists": {
+                    "variable": "step_712_result_1",
+                    "variable_path": "body.message"
+                  }
+                }
+              }
+            }
+          ],
+          "title": "Get a new message from Example Banking",
+          "action": "action_31212",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "intent": "action_31212_intent_11969"
+          },
+          "variables": [
+            {
+              "title": "Your message is: {variable}",
+              "variable": "step_138",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_342_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "Sorry, we can't get any message at the moment please try it late",
+              "variable": "step_609",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_683_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "Please wait while I retrieve your message ...",
+              "variable": "step_712",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_712_result_1",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "action_15665",
+          "topic_switch": {
+            "allowed_from": true,
+            "allowed_into": true
+          },
+          "disambiguation_opt_out": false
+        },
+        {
+          "steps": [
+            {
+              "step": "step_580",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Let me check, if there is an action required on your side. Therefore I need to known, where do you want to travel to?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "response_type": "response_from_data_type",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I didn't catch that. Select a valid option:"
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "data_type": "data-type_22020",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_580",
+              "next_step": "step_560"
+            },
+            {
+              "step": "step_560",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "When you are traveling to **\"** **"
+                            },
+                            {
+                              "skill_variable": "TravelLocation"
+                            },
+                            {
+                              "scalar": "** **\"** you need to inform the \"Example Banking\" Card Services about your travel.\n\nYou can use the Mobile App to do this."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Yes, I have the Mobile App installed",
+                        "value": {
+                          "input": {
+                            "text": "Yes, I have the Mobile App installed"
+                          }
+                        }
+                      },
+                      {
+                        "label": "No, I need to install the Mobile App",
+                        "value": {
+                          "input": {
+                            "text": "No, I need to install the Mobile App"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "context": {
+                "variables": [
+                  {
+                    "value": {
+                      "variable": "step_580"
+                    },
+                    "skill_variable": "TravelLocation"
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I didn't catch that. Select a valid option:"
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "entity_23945",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_560",
+              "condition": {
+                "exists": {
+                  "variable": "step_580"
+                }
+              },
+              "next_step": "step_631"
+            },
+            {
+              "step": "step_631",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "In the Mobile app you need to navigate to: **Notify going overseas** under **Card Services** and then\n\n\n  1. Select your **departure** and **return** dates\n  2. Select the **countries** you’re travelling to\n  3. Add your **contact number** and **email** while you’re away\n  4. Select **Notify going overseas**"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_631",
+              "condition": {
+                "or": [
+                  {
+                    "and": [
+                      {
+                        "eq": [
+                          {
+                            "variable": "step_560"
+                          },
+                          {
+                            "value": "Yes, I have the Mobile App installed",
+                            "from_entity": "entity_23945"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "exists": {
+                          "skill_variable": "mobile_user"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "next_step": "step_416"
+            },
+            {
+              "step": "step_416",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "And here is an additional information about credit card usage in "
+                            },
+                            {
+                              "skill_variable": "TravelLocation"
+                            },
+                            {
+                              "scalar": " that can be useful for you, based Example Banking data."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "search_and_end_action",
+                "response": {
+                  "query": "Any restrictions in europe related to credit card usage? ",
+                  "filter": "",
+                  "query_type": "natural_language"
+                }
+              },
+              "variable": "step_416",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_560"
+                  },
+                  {
+                    "value": "Yes, I have the Mobile App installed",
+                    "from_entity": "entity_23945"
+                  }
+                ]
+              },
+              "next_step": "step_970"
+            },
+            {
+              "step": "step_970",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "In the Mobile app you need to navigate to: **Notify going overseas** under **Card Services** and then\n\n\n  1. Select your **departure** and **return** dates\n  2. Select the **countries** you’re travelling to\n  3. Add your **contact number** and **email** while you’re away\n  4. Select **Notify going overseas**"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "invoke_another_action",
+                "invoke_action": {
+                  "action": "action_15665",
+                  "parameters": null,
+                  "result_variable": "step_970_result_1"
+                }
+              },
+              "variable": "step_970",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_560"
+                  },
+                  {
+                    "value": "No, I need to install the Mobile App",
+                    "from_entity": "entity_23945"
+                  }
+                ]
+              },
+              "next_step": "step_112"
+            },
+            {
+              "step": "step_112",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "And here is an additional information about credit card usage in "
+                            },
+                            {
+                              "skill_variable": "TravelLocation"
+                            },
+                            {
+                              "scalar": " that can be useful for you, based Example Banking data."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "search_and_end_action",
+                "response": {
+                  "query": "Credit card usage in europe",
+                  "filter": "",
+                  "query_type": "natural_language"
+                }
+              },
+              "variable": "step_112",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_560"
+                  },
+                  {
+                    "value": "No, I need to install the Mobile App",
+                    "from_entity": "entity_23945"
+                  }
+                ]
+              }
+            }
+          ],
+          "title": "Traveling overseas",
+          "action": "action_3415",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "intent": "action_3415_intent_37762"
+          },
+          "variables": [
+            {
+              "title": "And here is an additional information about credit card usage in",
+              "variable": "step_112",
+              "data_type": "any"
+            },
+            {
+              "title": "And here is an additional information about credit card usage in",
+              "variable": "step_416",
+              "data_type": "any"
+            },
+            {
+              "title": "When you are traveling to **\"** **{variable}** **\"** you need to",
+              "variable": "step_560",
+              "data_type": "any"
+            },
+            {
+              "title": "Let me check, if there is an action required on your side. There",
+              "variable": "step_580",
+              "data_type": "any"
+            },
+            {
+              "title": "In the Mobile app you need to navigate to: **Notify going overse",
+              "variable": "step_631",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_683_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "In the Mobile app you need to navigate to: **Notify going overse",
+              "variable": "step_970",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_970_result_1",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "action_31212",
+          "topic_switch": {
+            "allowed_from": true,
+            "allowed_into": true
+          },
+          "disambiguation_opt_out": false
+        },
+        {
+          "steps": [
+            {
+              "step": "step_616",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "I can help you to transfer money. You can transfer funds from your personal accounts in Online Banking or by using the Mobile App. How would you like to make a transfer."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Online Banking",
+                        "value": {
+                          "input": {
+                            "text": "Online Banking"
+                          }
+                        }
+                      },
+                      {
+                        "label": "Mobile App",
+                        "value": {
+                          "input": {
+                            "text": "Mobile App"
+                          }
+                        }
+                      },
+                      {
+                        "label": "How do I download the mobile app",
+                        "value": {
+                          "input": {
+                            "text": "How do I download the mobile app"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": ""
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "entity_48892",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_616",
+              "next_step": "step_887"
+            },
+            {
+              "step": "step_887",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "First, is the transfer for one of your other personal \"Example Banking\" accounts?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": {
+                          "input": {
+                            "text": "Yes"
+                          }
+                        }
+                      },
+                      {
+                        "label": "No",
+                        "value": {
+                          "input": {
+                            "text": "No"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": ""
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "entity_20663",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_887",
+              "condition": {
+                "or": [
+                  {
+                    "and": [
+                      {
+                        "eq": [
+                          {
+                            "variable": "step_616"
+                          },
+                          {
+                            "value": "Online Banking",
+                            "from_entity": "entity_48892"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "exists": {
+                          "variable": "step_616"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "next_step": "step_734"
+            },
+            {
+              "step": "step_734",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Please keep in mind that in order to transfer money from a different account you will require that account number.\""
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "context": {
+                "variables": []
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_734",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_887"
+                  },
+                  {
+                    "value": "No",
+                    "from_entity": "entity_20663"
+                  }
+                ]
+              },
+              "next_step": "step_236"
+            },
+            {
+              "step": "step_236",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Okay. How much is the transfer for?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "context": {
+                "variables": []
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I'm sorry, I did not catch that, please restate your response."
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "sys-currency",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_236",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_887"
+                  },
+                  {
+                    "value": "Yes",
+                    "from_entity": "entity_20663"
+                  }
+                ]
+              },
+              "next_step": "step_207"
+            },
+            {
+              "step": "step_207",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "*Okay, for the transfer of an amount of*  **"
+                            },
+                            {
+                              "skill_variable": "TransferValue"
+                            },
+                            {
+                              "scalar": "**  *these are the steps to make a transfer to one of your other personal \"Example Banking\" accounts:*"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "- *Log in to your account*\n    - *Click on the menu and Select Money Transfers*\n    - *Choose My \"Example Banking\" Accounts (for personal)*\n    - *Choose Other (if you are using different account)*\n    - *Select the Transfer To account number*\n    - *Submit the transfer\"*"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "context": {
+                "variables": [
+                  {
+                    "value": {
+                      "variable": "step_236"
+                    },
+                    "skill_variable": "TransferValue"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_207",
+              "condition": {
+                "lt": [
+                  {
+                    "variable": "step_236"
+                  },
+                  {
+                    "scalar": "5000.00"
+                  }
+                ]
+              },
+              "next_step": "step_706"
+            },
+            {
+              "step": "step_706",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "*Please keep in mind daily transfers greater than 5,000 will be subject to a 1% fee. To transfer from one of your personal DTE Bank Accounts:*"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "- *Log in to your account*\n  - *Click on the menu and Select Money Transfers*\n  - *Choose My \"Example Banking\" Accounts (for personal)*\n  - *Choose Other (if you are using a different account)*\n  - *Select the Transfer To account number*\n  - *Submit the transfer\"*"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_706",
+              "condition": {
+                "gte": [
+                  {
+                    "variable": "step_236"
+                  },
+                  {
+                    "scalar": "5000.00"
+                  }
+                ]
+              },
+              "next_step": "step_408"
+            },
+            {
+              "step": "step_408",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "To transfer money through you mobile app you first need to have the application installed on your phone. Have you already downloaded our app?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": {
+                          "input": {
+                            "text": "Yes"
+                          }
+                        }
+                      },
+                      {
+                        "label": "No",
+                        "value": {
+                          "input": {
+                            "text": "No"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I didn't catch that. Select a valid option:"
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "entity_42716",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_408",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_616"
+                  },
+                  {
+                    "value": "Mobile App",
+                    "from_entity": "entity_48892"
+                  }
+                ]
+              },
+              "next_step": "step_215"
+            },
+            {
+              "step": "step_215",
+              "context": {
+                "variables": [
+                  {
+                    "value": {
+                      "variable": "step_408"
+                    },
+                    "skill_variable": "mobile_user"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "replay",
+                "clear": [
+                  {
+                    "variable": "step_887"
+                  }
+                ]
+              },
+              "variable": "step_215",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_408"
+                  },
+                  {
+                    "value": "Yes",
+                    "from_entity": "entity_42716"
+                  }
+                ]
+              },
+              "next_step": "step_245"
+            },
+            {
+              "step": "step_245",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "In order to transfer money through the mobile app you will have to download it."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "invoke_another_action",
+                "invoke_action": {
+                  "action": "action_15665",
+                  "parameters": null,
+                  "result_variable": "step_245_result_1"
+                }
+              },
+              "variable": "step_245",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_408"
+                  },
+                  {
+                    "value": "No",
+                    "from_entity": "entity_42716"
+                  }
+                ]
+              }
+            }
+          ],
+          "title": "I want to transfer money",
+          "action": "action_44755",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "intent": "action_44755_intent_44224"
+          },
+          "variables": [
+            {
+              "title": "*Okay, for the transfer of an amount of* **{variable}** *these a",
+              "variable": "step_207",
+              "data_type": "any"
+            },
+            {
+              "title": "No response",
+              "variable": "step_215",
+              "data_type": "any"
+            },
+            {
+              "title": "Okay. How much is the transfer for?",
+              "variable": "step_236",
+              "data_type": "currency"
+            },
+            {
+              "title": "In order to transfer money through the mobile app you will have ",
+              "variable": "step_245",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_245_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "To transfer money through you mobile app you first need to have ",
+              "variable": "step_408",
+              "data_type": "any"
+            },
+            {
+              "title": "I can help you to transfer money. You can transfer funds from yo",
+              "variable": "step_616",
+              "data_type": "any"
+            },
+            {
+              "title": "*Please keep in mind daily transfers greater than 5,000 will be ",
+              "variable": "step_706",
+              "data_type": "any"
+            },
+            {
+              "title": "Please keep in mind that in order to transfer money from a diffe",
+              "variable": "step_734",
+              "data_type": "any"
+            },
+            {
+              "title": "First, is the transfer for one of your other personal \"Happy Ban",
+              "variable": "step_887",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "action_10147",
+          "topic_switch": {
+            "allowed_from": true,
+            "allowed_into": true
+          },
+          "disambiguation_opt_out": false
+        },
+        {
+          "steps": [
+            {
+              "step": "step_504",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "I'm afraid I don't understand. Please rephrase your question."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_504",
+              "condition": {
+                "eq": [
+                  {
+                    "system_variable": "no_action_matches_count"
+                  },
+                  {
+                    "scalar": "1"
+                  }
+                ]
+              },
+              "next_step": "step_624"
+            },
+            {
+              "step": "step_624",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "I'm afraid I don't understand, but I will search for you for an answer, therefore I use my Watson Discovery data resources."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "search",
+                "response": {
+                  "query": "",
+                  "query_type": "natural_language"
+                }
+              },
+              "variable": "step_624",
+              "condition": {
+                "gte": [
+                  {
+                    "system_variable": "no_action_matches_count"
+                  },
+                  {
+                    "scalar": "2"
+                  }
+                ]
+              },
+              "next_step": "step_567"
+            },
+            {
+              "step": "step_567",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Was the search result useful for you and were we able to answer your question?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": {
+                          "input": {
+                            "text": "Yes"
+                          }
+                        }
+                      },
+                      {
+                        "label": "No",
+                        "value": {
+                          "input": {
+                            "text": "No"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I'm sorry, I did not catch that, please restate your response."
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "sys-yes-no",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_567",
+              "next_step": "step_001"
+            },
+            {
+              "step": "step_001",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "I'm afraid I don't understand. I assume we need to contact a live agent in this case. Should I connect you with a live agent?"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  },
+                  {
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": {
+                          "input": {
+                            "text": "Yes"
+                          }
+                        }
+                      },
+                      {
+                        "label": "No",
+                        "value": {
+                          "input": {
+                            "text": "No"
+                          }
+                        }
+                      }
+                    ],
+                    "response_type": "option",
+                    "repeat_on_reprompt": true
+                  }
+                ]
+              },
+              "handlers": [
+                {
+                  "type": "not_found",
+                  "title": "validation_not_found_handler",
+                  "output": {
+                    "generic": [
+                      {
+                        "values": [
+                          {
+                            "text": "I'm sorry, I did not catch that, please restate your response."
+                          }
+                        ],
+                        "response_type": "text"
+                      }
+                    ]
+                  },
+                  "handler": "validation_not_found_handler",
+                  "resolver": {
+                    "type": "prompt_again"
+                  },
+                  "next_handler": "validation_not_found_max_tries_handler"
+                },
+                {
+                  "type": "not_found_max_tries",
+                  "title": "validation_not_found_max_tries_handler",
+                  "handler": "validation_not_found_max_tries_handler",
+                  "resolver": {
+                    "type": "fallback"
+                  }
+                }
+              ],
+              "question": {
+                "entity": "sys-yes-no",
+                "max_tries": 3
+              },
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_001",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_567"
+                  },
+                  {
+                    "scalar": "no"
+                  }
+                ]
+              },
+              "next_step": "step_307"
+            },
+            {
+              "step": "step_307",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text_expression": {
+                          "concat": [
+                            {
+                              "scalar": "Awesome, that we were able to help you."
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "continue"
+              },
+              "variable": "step_307",
+              "condition": {
+                "eq": [
+                  {
+                    "variable": "step_567"
+                  },
+                  {
+                    "scalar": "yes"
+                  }
+                ]
+              },
+              "next_step": "step_342"
+            },
+            {
+              "step": "step_342",
+              "handlers": [],
+              "resolver": {
+                "type": "invoke_another_action_and_end",
+                "invoke_action": {
+                  "action": "fallback",
+                  "parameters": null,
+                  "result_variable": "step_342_result_1"
+                }
+              },
+              "variable": "step_342"
+            }
+          ],
+          "title": "No action matches",
+          "action": "anything_else",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "expression": "anything_else"
+          },
+          "variables": [
+            {
+              "title": "I'm afraid I don't understand. I assume we need to contact a liv",
+              "variable": "step_001",
+              "data_type": "yes_no"
+            },
+            {
+              "variable": "step_001_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "Awesome, that we were able to help you.",
+              "variable": "step_307",
+              "data_type": "any"
+            },
+            {
+              "title": "No response",
+              "variable": "step_342",
+              "data_type": "any"
+            },
+            {
+              "variable": "step_342_result_1",
+              "data_type": "any"
+            },
+            {
+              "title": "I'm afraid I don't understand. Please rephrase your question.",
+              "variable": "step_504",
+              "data_type": "any"
+            },
+            {
+              "title": "Was the search result useful for you and were we able to answer ",
+              "variable": "step_567",
+              "data_type": "yes_no"
+            },
+            {
+              "title": "I'm afraid I don't understand, but I will search for you for an ",
+              "variable": "step_624",
+              "data_type": "any"
+            }
+          ],
+          "disambiguation_opt_out": true
+        },
+        {
+          "steps": [
+            {
+              "step": "step_001",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text": "I'm afraid I don't understand. I can connect you to an agent."
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "connect_to_agent",
+                "response": {
+                  "transfer_info": {
+                    "target": {}
+                  },
+                  "agent_available": {
+                    "message": "Let's send you to an available agent."
+                  },
+                  "agent_unavailable": {
+                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                  },
+                  "message_to_human_agent": ""
+                }
+              },
+              "variable": "step_001",
+              "condition": {
+                "eq": [
+                  {
+                    "system_variable": "fallback_reason"
+                  },
+                  {
+                    "scalar": "Step validation failed"
+                  }
+                ]
+              },
+              "next_step": "step_002"
+            },
+            {
+              "step": "step_002",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "connect_to_agent",
+                "response": {
+                  "transfer_info": {
+                    "target": {}
+                  },
+                  "agent_available": {
+                    "message": "Let's send you to an available agent."
+                  },
+                  "agent_unavailable": {
+                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                  },
+                  "message_to_human_agent": ""
+                }
+              },
+              "variable": "step_002",
+              "condition": {
+                "eq": [
+                  {
+                    "system_variable": "fallback_reason"
+                  },
+                  {
+                    "scalar": "Agent requested"
+                  }
+                ]
+              },
+              "next_step": "step_003"
+            },
+            {
+              "step": "step_003",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "connect_to_agent",
+                "response": {
+                  "transfer_info": {
+                    "target": {}
+                  },
+                  "agent_available": {
+                    "message": "Let's send you to an available agent."
+                  },
+                  "agent_unavailable": {
+                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                  },
+                  "message_to_human_agent": ""
+                }
+              },
+              "variable": "step_003",
+              "condition": {
+                "eq": [
+                  {
+                    "system_variable": "fallback_reason"
+                  },
+                  {
+                    "scalar": "No action matches"
+                  }
+                ]
+              }
+            }
+          ],
+          "title": "Fallback",
+          "action": "fallback",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "intent": "fallback_connect_to_agent"
+          },
+          "variables": [
+            {
+              "title": "I'm afraid I don't understand. I can connect you to an agent.",
+              "variable": "step_001",
+              "data_type": "any"
+            },
+            {
+              "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+              "variable": "step_002",
+              "data_type": "any"
+            },
+            {
+              "title": "I am afraid I do not understand what you are asking, let me conn",
+              "variable": "step_003",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "anything_else",
+          "disambiguation_opt_out": true
+        },
+        {
+          "steps": [
+            {
+              "step": "step_001",
+              "output": {
+                "generic": [
+                  {
+                    "values": [
+                      {
+                        "text": "Welcome, how can I assist you?"
+                      }
+                    ],
+                    "response_type": "text",
+                    "selection_policy": "sequential"
+                  }
+                ]
+              },
+              "handlers": [],
+              "resolver": {
+                "type": "end_action"
+              },
+              "variable": "step_001"
+            }
+          ],
+          "title": "Greet customer",
+          "action": "welcome",
+          "boosts": [],
+          "handlers": [],
+          "condition": {
+            "expression": "welcome"
+          },
+          "variables": [
+            {
+              "variable": "step_001",
+              "data_type": "any"
+            }
+          ],
+          "next_action": "action_3415",
+          "disambiguation_opt_out": true
+        }
+      ],
+      "intents": [
+        {
+          "intent": "action_10147_intent_22782",
+          "examples": [
+            {
+              "text": "Can you help me with the CVV?"
+            },
+            {
+              "text": "I have no clue what the CVV is!"
+            },
+            {
+              "text": "What is a CVV?"
+            },
+            {
+              "text": "What is the card verification value?"
+            },
+            {
+              "text": "Where is a CVV?"
+            }
+          ]
+        },
+        {
+          "intent": "action_15665_intent_14936",
+          "examples": [
+            {
+              "text": "How do I get the mobile app?"
+            }
+          ]
+        },
+        {
+          "intent": "action_31212_intent_11969",
+          "examples": [
+            {
+              "text": "Do you have any new Example Banking messages ?"
+            },
+            {
+              "text": "Get message from Example Banking"
+            },
+            {
+              "text": "Please, give a Example Banking message"
+            },
+            {
+              "text": "Where is my message?"
+            }
+          ]
+        },
+        {
+          "intent": "action_3415_intent_37762",
+          "examples": [
+            {
+              "text": "Do I need to inform Example Banking when I travel overseas ?"
+            },
+            {
+              "text": "Traveling overseas"
+            },
+            {
+              "text": "What about overseas?"
+            }
+          ]
+        },
+        {
+          "intent": "action_44755_intent_44224",
+          "examples": [
+            {
+              "text": "Help me transfer money"
+            },
+            {
+              "text": "I don't know how to transfer money"
+            },
+            {
+              "text": "I have to send some money"
+            },
+            {
+              "text": "I want to transfer money"
+            },
+            {
+              "text": "Trying to send some money"
+            }
+          ]
+        },
+        {
+          "intent": "fallback_connect_to_agent",
+          "examples": [
+            {
+              "text": "Agent help"
+            },
+            {
+              "text": "Call agent"
+            },
+            {
+              "text": "Can I connect to an agent?"
+            },
+            {
+              "text": "I would like to speak to a human"
+            },
+            {
+              "text": "I would like to speak to someone"
+            }
+          ],
+          "description": "Please transfer me to an agent"
+        }
+      ],
+      "entities": [
+        {
+          "entity": "entity_1355",
+          "values": [
+            {
+              "type": "synonyms",
+              "value": "voucher",
+              "synonyms": []
+            }
+          ],
+          "fuzzy_match": true
+        },
+        {
+          "entity": "entity_20663",
+          "values": [
+            {
+              "type": "synonyms",
+              "value": "No",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Yes",
+              "synonyms": []
+            }
+          ],
+          "fuzzy_match": true
+        },
+        {
+          "entity": "entity_23945",
+          "values": [
+            {
+              "type": "synonyms",
+              "value": "No, I need to install the Mobile App",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Yes, I have the Mobile App installed",
+              "synonyms": []
+            }
+          ],
+          "fuzzy_match": true
+        },
+        {
+          "entity": "entity_37164",
+          "values": [
+            {
+              "type": "synonyms",
+              "value": "Africa",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Antarctic",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Asia",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Australia",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Europe",
+              "synonyms": []
+            }
+          ],
+          "fuzzy_match": true
+        },
+        {
+          "entity": "entity_42716",
+          "values": [
+            {
+              "type": "synonyms",
+              "value": "No",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Yes",
+              "synonyms": []
+            }
+          ],
+          "fuzzy_match": true
+        },
+        {
+          "entity": "entity_48892",
+          "values": [
+            {
+              "type": "synonyms",
+              "value": "How do I download the mobile app",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Mobile App",
+              "synonyms": []
+            },
+            {
+              "type": "synonyms",
+              "value": "Online Banking",
+              "synonyms": []
+            }
+          ],
+          "fuzzy_match": true
+        },
+        {
+          "entity": "sys-currency",
+          "values": []
+        },
+        {
+          "entity": "sys-number",
+          "values": []
+        },
+        {
+          "entity": "sys-yes-no",
+          "values": []
+        }
+      ],
+      "metadata": {
+        "api_version": {
+          "major_version": "v2",
+          "minor_version": "2018-11-08"
+        }
+      },
+      "variables": [
+        {
+          "title": "Message",
+          "variable": "Message",
+          "data_type": "string",
+          "description": ""
+        },
+        {
+          "title": "mobile user",
+          "variable": "mobile_user",
+          "data_type": "any",
+          "description": ""
+        },
+        {
+          "title": "TransferValue",
+          "variable": "TransferValue",
+          "data_type": "currency",
+          "description": "transfer value"
+        },
+        {
+          "title": "TravelLocation",
+          "variable": "TravelLocation",
+          "data_type": "string",
+          "description": "This is the travel location for overseas"
+        }
+      ],
+      "data_types": [
+        {
+          "title": "voucher",
+          "entity": "entity_1355",
+          "response": {
+            "options": [
+              {
+                "label": "voucher",
+                "value": {
+                  "input": {
+                    "text": "voucher"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          },
+          "data_type": "data-type_19233"
+        },
+        {
+          "title": "Travel_Location",
+          "entity": "entity_37164",
+          "response": {
+            "options": [
+              {
+                "label": "Africa",
+                "value": {
+                  "input": {
+                    "text": "Africa"
+                  }
+                }
+              },
+              {
+                "label": "Asia",
+                "value": {
+                  "input": {
+                    "text": "Asia"
+                  }
+                }
+              },
+              {
+                "label": "Australia",
+                "value": {
+                  "input": {
+                    "text": "Australia"
+                  }
+                }
+              },
+              {
+                "label": "Antarctic",
+                "value": {
+                  "input": {
+                    "text": "Antarctic"
+                  }
+                }
+              },
+              {
+                "label": "Europe",
+                "value": {
+                  "input": {
+                    "text": "Europe"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          },
+          "data_type": "data-type_22020"
+        }
+      ],
+      "counterexamples": [],
+      "system_settings": {
+        "off_topic": {
+          "enabled": true
+        },
+        "topic_switch": {
+          "enabled": true,
+          "messages": {
+            "confirm_return": {
+              "text": "Return to previous topic?"
+            },
+            "confirm_switch": {
+              "text": "Switch from the current topic?"
+            }
+          },
+          "question_steps_threshold": 2
+        },
+        "disambiguation": {
+          "prompt": "Did you mean:",
+          "enabled": true,
+          "randomize": true,
+          "max_suggestions": 5,
+          "suggestion_text_policy": "title",
+          "none_of_the_above_prompt": "None of the above"
+        },
+        "intent_classification": {
+          "training_backend_version": "v2"
+        },
+        "spelling_auto_correct": true
+      },
+      "learning_opt_out": false
+    },
+    "description": "created for assistant 3d6d1cd6-29fd-472a-8c52-ca4f445f1fa0",
+    "assistant_id": "df8d00f8-e9cc-46ce-ac69-9cf1f31a3488",
+    "workspace_id": "7543a944-60ee-4c2d-89aa-af738f0253c3",
+    "dialog_settings": {},
+    "next_snapshot_version": "6"
+  }

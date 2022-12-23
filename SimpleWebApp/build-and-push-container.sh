@@ -2,7 +2,7 @@
 
 # **************** Global variables
 export ROOT_PATH=$(pwd)
-export IMAGE_NAME=vue-assistant-happybanking:v0.0.1
+export IMAGE_NAME=vue-assistant-examplebanking:v0.0.1
 export URL=quay.io
 export REPOSITORY=tsuedbroecker
 export CONTAINER_RUNTIME=podman

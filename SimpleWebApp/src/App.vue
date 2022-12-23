@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import ExampleBanking from "./components/ExampleBanking.vue";
 </script>
 
 <template>
@@ -15,7 +15,7 @@ import HelloWorld from "./components/HelloWorld.vue";
       />
 
       <div class="wrapper">
-        <HelloWorld msg="Happy Banking!" />
+        <ExampleBanking msg="Exampe Banking!" />
         
         <nav>
           <RouterLink to="/">Home</RouterLink>

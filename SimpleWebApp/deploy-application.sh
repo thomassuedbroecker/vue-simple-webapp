@@ -23,7 +23,7 @@ export ASSISTANT_EXTENSION_URL=""
 export STATUS="Running"
 
 export COMMONTAG="v0.0.1"
-export VUE_IMAGE="$REGISTRY/$REPOSITORY/vue-assistant-happybanking:$COMMONTAG"
+export VUE_IMAGE="$REGISTRY/$REPOSITORY/vue-assistant-examplebanking:$COMMONTAG"
 
 # **********************************************************************************
 # Functions definition

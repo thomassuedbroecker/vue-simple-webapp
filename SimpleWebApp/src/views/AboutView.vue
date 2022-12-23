@@ -1,7 +1,7 @@
 <template>
     <div class="about">
       <div>
-       <b><h1 style="color:#008000">Happy Banking!</h1></b>
+       <b><h1 style="color:#008000">Example Banking!</h1></b>
       </div>
       <div>
        <strong style="color:#f5f5dc">We provide an awesome banking experience,<br>

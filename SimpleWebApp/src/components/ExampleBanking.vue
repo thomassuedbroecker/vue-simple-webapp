@@ -40,7 +40,7 @@ export default {
     <div class="greetings">
         <h1 class="green">{{ msg }}</h1>
         <h2>
-          Welcome at Happy Banking
+          Welcome at Example Banking
         </h2>
     </div>
 
