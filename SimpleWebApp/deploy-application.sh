@@ -18,7 +18,7 @@ export REGISTRY="quay.io"
 export REPOSITORY=tsuedbroecker
 
 export NAMESPACE=""
-export ASSISTANT_EXTENSION_URL=""
+export ASSISTANT_WEB_URL=""
 
 export STATUS="Running"
 
@@ -53,7 +53,7 @@ function setupCLIenvCE() {
   echo "Namespace: $NAMESPACE"
   kubectl get pods -n $NAMESPACE
 
-  ibmcloud ce application get --name assistant-extension
+  ibmcloud ce application get --name assistant-web-app
   CHECK=$(ibmcloud ce application list | grep assistant-web-app)
   echo "Check: ($CHECK)"
   if [[ $CHECK != "" ]];
@@ -74,9 +74,9 @@ function createSecrets() {
 
 }
 
-# **** application and microservices ****
+# **** application ****
 
-function deployExtension(){
+function deployWebApp(){
 
     ibmcloud ce application create --name assistant-web-app --image "$VUE_IMAGE" \
                                    --cpu "0.5" \
@@ -120,10 +120,10 @@ function getKubeContainerLogs(){
     echo " assistant-extension log"
     echo "************************************"
 
-    FIND=assistant-extension
-    ASSISTANT_EXTENSION_LOG=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $1}')
-    echo $ASSISTANT_EXTENSION_LOG
-    kubectl logs $ASSISTANT_EXTENSION
+    FIND=assistant-web-app
+    ASSISTANT_WEBAPP_LOG=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $1}')
+    echo $ASSISTANT_WEBAPP_LOG
+    kubectl logs $ASSISTANT_WEBAPP_LOG
 }
 
 # **********************************************************************************
@@ -149,11 +149,11 @@ echo "************************************"
 createSecrets
 
 echo "************************************"
-echo " assistant extension"
+echo " assistant web application"
 echo "************************************"
 
-deployExtension
-ibmcloud ce application events --application assistant-extension
+deployWebApp
+ibmcloud ce application events --application assistant-web-app
 
 echo "************************************"
 echo " Verify deployments"
@@ -170,4 +170,4 @@ getKubeContainerLogs
 echo "************************************"
 echo " URLs"
 echo "************************************"
-echo " - Extension  : $ASSISTANT_WEB_URL"
+echo " - WebApp URL  : $ASSISTANT_WEB_URL"
