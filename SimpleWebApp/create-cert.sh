@@ -45,7 +45,7 @@ function copyCert () {
 }
 
 function displayCert () {
-    echo "Publci cert:"
+    echo "Public cert:"
     cat $DESTINATION_CERTIFICATE
     echo "Private key:"
     cat $DESTINATION_KEY
