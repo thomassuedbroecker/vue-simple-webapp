@@ -2,6 +2,8 @@
 
 This repository contains a sample vue application called `"Example Banking"`.
 
+![](images/simple-webapp-01.png)
+
 The application can be run locally and in a container, where an Nginx is used as the webserver. You can also deploy the application to `IBM Cloud Code Engine`.
 
 The application is also prepared to be integrated with `IBM Cloud Watson Assistant` as a chat bot. 
@@ -27,7 +29,7 @@ Edit the `.env` file.
 ASSISTANT_INTEGRATION_ID="YOUR_ID" 
 ASSISTANT_REGION="YOUR_REGION"
 ASSISTANT_SERVICE_INSTANCE_ID="YOUR_SERVICE_INSTANCE"
-ROOTFOLDER="YOUR_ROOTFOLDER"
+ROOTFOLDER="YOUR_ROOTFOLDER" #Location on your local machine
 MYPROJECT="YOUR_MYPROJECT" #Code Engine project name
 RESOURCE_GROUP="default" #IBM Cloud resource group
 REGION="YOUR_REGION" #IBM Cloud region
