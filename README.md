@@ -1,63 +1,68 @@
-# Simple webapp
+# Sample Web App
 
-### Create VUE application
+This repository contains a sample vue application called `"Example Banking"`.
 
-#### Step 1: Install with NPM
+The application can be run locally and in a container, where an Nginx is used as the webserver. You can also deploy the application to `IBM Cloud Code Engine`.
+
+The application is also prepared to be integrated with `IBM Cloud Watson Assistant` as a chat bot. 
+
+You can also create your own TLS certification with [cert bot](https://certbot.eff.org/) and ([Lets Encrypt](https://letsencrypt.org/) to be mapped inside `IBM Cloud Code Engine` domain mapping.
+
+### Step 1: Clone the example project to your local computer
 
 ```sh
-npm init vue@latest
-``` 
+git clone https://github.com/thomassuedbroecker/vue-simple-webapp
+cd vue-simple-webapp/code
+```
 
-#### Step 2: Used configuration
+### Step 2:  Set the needed environ `.env` file
 
 ```sh
-Vue.js - The Progressive JavaScript Framework
+cat .env-template > .env
+```
 
-✔ Project name: … SimpleWebApp
-✔ Package name: … simplewebapp
-✔ Add TypeScript? … No / Yes
-✔ Add JSX Support? … No / Yes
-✔ Add Vue Router for Single Page Application development? … No / Yes
-✔ Add Pinia for state management? … No / Yes
-✔ Add Vitest for Unit Testing? … No / Yes
-✔ Add an End-to-End Testing Solution? › No
-✔ Add ESLint for code quality? … No / Yes
-✔ Add Prettier for code formatting? … No / Yes
+Edit the `.env` file.
 
-Scaffolding project in /Users/thomassuedbroecker/Downloads/dev/vue-simple-webapp/SimpleWebApp...
+```sh
+ASSISTANT_INTEGRATION_ID="YOUR_ID" 
+ASSISTANT_REGION="YOUR_REGION"
+ASSISTANT_SERVICE_INSTANCE_ID="YOUR_SERVICE_INSTANCE"
+ROOTFOLDER="YOUR_ROOTFOLDER"
+MYPROJECT="YOUR_MYPROJECT" #Code Engine project name
+RESOURCE_GROUP="default" #IBM Cloud resource group
+REGION="YOUR_REGION" #IBM Cloud region
+CERT_EMAIL="YOUR_EMAIL" # If you want to create a TLS certification
+CERT_DOMAIN="YOUR_DOMAIN" # If you want to create a TLS certification
+```
 
-Done. Now run:
+### Step 3: Run the application locally
 
-  cd SimpleWebApp
+```sh
   npm install
   npm run lint
   npm run dev
 ```
 
-### Customize Vite configuration to run VUE applicatiion 
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-### Project Setup
+### Step 4: Run the application locally as a container
 
 ```sh
-npm install
+sh build-and-verify-container.sh
 ```
 
-#### Compile and Hot-Reload for Development
+### Step 5: Push the container to a container registry
 
 ```sh
-npm run dev
+sh build-push-container.sh
 ```
 
-#### Compile and Minify for Production
+### Step 6: Deploy the application to Code Engine
 
 ```sh
-npm run build
+sh deploy-application.sh
 ```
 
-#### Lint with [ESLint](https://eslint.org/)
+### Step 7: Create a TLS cert for a domain
 
 ```sh
-npm run lint
+create-cert.sh
 ```

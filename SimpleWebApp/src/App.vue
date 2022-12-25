@@ -16,13 +16,12 @@ import ExampleBanking from "./components/ExampleBanking.vue";
 
       <div class="wrapper">
         <ExampleBanking msg="Exampe Banking!" />
-        
+
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
         </nav>
       </div>
-
     </header>
   </body>
   <RouterView />
@@ -30,8 +29,8 @@ import ExampleBanking from "./components/ExampleBanking.vue";
 
 <style scoped>
 body {
- background-image: url("./assets/money-2696229_1920.jpg");
- background-color: #cccccc;
+  background-image: url("./assets/money-2696229_1920.jpg");
+  background-color: #cccccc;
 }
 
 header {

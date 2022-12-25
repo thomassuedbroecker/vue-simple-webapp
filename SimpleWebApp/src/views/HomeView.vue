@@ -1,24 +1,29 @@
 <script setup>
 import TheWelcome from "../components/TheWelcome.vue";
 
-console.log("-->log ASSISTANT_INTEGRATION_ID : " + window.ASSISTANT_INTEGRATION_ID );
+console.log(
+  "-->log ASSISTANT_INTEGRATION_ID : " + window.ASSISTANT_INTEGRATION_ID
+);
 console.log("-->log ASSISTANT_REGION : " + window.ASSISTANT_REGION);
-console.log("-->log ASSISTANT_SERVICE_INSTANCE_ID : " + window.ASSISTANT_SERVICE_INSTANCE_ID);
+console.log(
+  "-->log ASSISTANT_SERVICE_INSTANCE_ID : " +
+    window.ASSISTANT_SERVICE_INSTANCE_ID
+);
 
 // Your custom service desk integration which can be located anywhere in your codebase.
 class MyServiceDesk {
-    constructor(callback) {
-      this.callback = callback;
-    }
-    startChat() {
-      console.log('Starting chat');
-    }
-    endChat() {
-      console.log('Ending chat');
-    }
-    sendMessageToAgent() {
-      console.log('Sending message to agent');
-    }
+  constructor(callback) {
+    this.callback = callback;
+  }
+  startChat() {
+    console.log("Starting chat");
+  }
+  endChat() {
+    console.log("Ending chat");
+  }
+  sendMessageToAgent() {
+    console.log("Sending message to agent");
+  }
 }
 
 window.watsonAssistantChatOptions = {
@@ -61,13 +66,12 @@ setTimeout(function () {
 }
 
 body {
- background-image: url("../assets/money-2696229_1920.jpg");
- background-color: #cccccc;
+  background-image: url("../assets/money-2696229_1920.jpg");
+  background-color: #cccccc;
 }
 
 header {
   line-height: 1.5;
   max-height: 100vh;
 }
-
 </style>

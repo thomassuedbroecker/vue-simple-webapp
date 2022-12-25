@@ -13,7 +13,7 @@ import SupportIcon from "./icons/IconSupport.vue";
       <DocumentationIcon />
     </template>
     <template #heading>Welcome</template>
-    
+
     Have a nice day. Let's manage your today's fincance.
   </WelcomeItem>
 
@@ -54,7 +54,6 @@ import SupportIcon from "./icons/IconSupport.vue";
   </WelcomeItem>
 </template>
 
-
 <style>
 @media (min-width: 1024px) {
   .about {
@@ -65,14 +64,12 @@ import SupportIcon from "./icons/IconSupport.vue";
 }
 
 body {
- background-image: url("../assets/hand-2722108_1920.jpg");
- background-color: #cccccc;
+  background-image: url("../assets/hand-2722108_1920.jpg");
+  background-color: #cccccc;
 }
 
 header {
   line-height: 1.5;
   max-height: 100vh;
 }
-
 </style>
-
