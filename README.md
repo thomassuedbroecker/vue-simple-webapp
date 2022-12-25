@@ -8,7 +8,7 @@ The example application can run locally as native Vue.js application and in a co
 
 The example application is also prepared to be integrated with [`IBM Cloud Watson Assistant`](https://cloud.ibm.com/catalog/services/watson-assistant#about). 
 
-You can also create your own TLS certification with [cert bot](https://certbot.eff.org/) and ([Lets Encrypt](https://letsencrypt.org/) to be mapped inside [`IBM Cloud Code Engine` domain mapping](https://cloud.ibm.com/docs/codeengine?topic=codeengine-domain-mappings).
+You can also create your own TLS certification with [cert bot](https://certbot.eff.org/) and([Lets Encrypt](https://letsencrypt.org/). You can use [`IBM Cloud Code Engine` domain mapping](https://cloud.ibm.com/docs/codeengine?topic=codeengine-domain-mappings) to map your custom domain.
 
 ### Step 1: Clone the example project to your local computer
 
