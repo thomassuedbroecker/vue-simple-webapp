@@ -1,10 +1,10 @@
 # Example WebApp build on Vue.js
 
-This repository contains a sample Vue.js application called `"Example Banking"`.
+This repository contains a sample [Vue.js](https://vuejs.org) application called `"Example Banking"`.
 
 ![](images/simple-webapp-01.png)
 
-The example application can run locally as native Vue.js application and in a container ([Podman](https://podman.io/)), where an [Nginx](https://www.nginx.com) is used as the webserver for the [Vue.js](https://vuejs.org) webapplication. You can also deploy the application to `IBM Cloud Code Engine`.
+The example application can run locally as native Vue.js application and in a container ([Podman](https://podman.io/)), where an [Nginx](https://www.nginx.com) is used as the webserver for the [Vue.js](https://vuejs.org) webapplication. You can also deploy the application to [`IBM Cloud Code Engine`](https://cloud.ibm.com/docs/codeengine).
 
 The example application is also prepared to be integrated with [`IBM Cloud Watson Assistant`](https://cloud.ibm.com/catalog/services/watson-assistant#about). 
 
