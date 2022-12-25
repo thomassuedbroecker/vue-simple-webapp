@@ -13,8 +13,8 @@ function creatCert () {
     sudo certbot certonly \
     --manual \
     --preferred-challenges=dns \
-    --email=$CERT_EMAIL
-    --https://acme-staging-v02.api.letsencrypt.org/directory
+    --email=$CERT_EMAIL \
+    --https://acme-staging-v02.api.letsencrypt.org/directory \
     --agree-tos \
     -d $CERT_DOMAIN   
 }
