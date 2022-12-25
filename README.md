@@ -58,6 +58,7 @@ sh build-push-container.sh
 ### Step 6: Deploy the application to Code Engine
 
 ```sh
+ibmcloud login
 sh deploy-application.sh
 ```
 
