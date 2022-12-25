@@ -4,7 +4,7 @@ This repository contains a sample vue application called `"Example Banking"`.
 
 ![](images/simple-webapp-01.png)
 
-The application can be run locally and in a container, where an Nginx is used as the webserver. You can also deploy the application to `IBM Cloud Code Engine`.
+The application can be run locally as native vue application and in a container, where an Nginx is used as the webserver for the Vue.js webapplication. You can also deploy the application to `IBM Cloud Code Engine`.
 
 The application is also prepared to be integrated with `IBM Cloud Watson Assistant` as a chat bot. 
 
