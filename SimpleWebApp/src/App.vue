@@ -15,7 +15,7 @@ import ExampleBanking from "./components/ExampleBanking.vue";
       />
 
       <div class="wrapper">
-        <ExampleBanking msg="Exampe Banking!" />
+        <ExampleBanking msg="Example Banking!" />
 
         <nav>
           <RouterLink to="/">Home</RouterLink>
