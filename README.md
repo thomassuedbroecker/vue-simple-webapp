@@ -10,6 +10,8 @@ The example application is also prepared to be integrated with [`IBM Cloud Watso
 
 You can also create your own TLS certificate with [cert bot](https://certbot.eff.org/) and [Let's Encrypt](https://letsencrypt.org/). You can use [`IBM Cloud Code Engine` domain mapping](https://cloud.ibm.com/docs/codeengine?topic=codeengine-domain-mappings) to map your custom domain.
 
+> Visit the related blog post [`Custom domain and TLS certificate for your application on IBM Cloud Code Engine`](https://suedbroecker.net/2022/12/26/custom-domain-and-tls-certificate-for-your-application-on-ibm-cloud-code-engine/).
+
 ### Step 1: Clone the example project to your local computer
 
 ```sh
