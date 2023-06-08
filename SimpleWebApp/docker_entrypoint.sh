@@ -75,8 +75,4 @@ echo ""
 echo "*********************"
 echo "Start server"
 echo "*********************"
-nginx -V
-nginx -t
-echo "*********************"
-cd ..
-cat docker-entrypoint.sh
+/usr/sbin/nginx -g "daemon off;"

@@ -1,14 +1,9 @@
 <script setup>
 import TheWelcome from "../components/TheWelcome.vue";
 
-console.log(
-  "-->log ASSISTANT_INTEGRATION_ID : " + window.ASSISTANT_INTEGRATION_ID
-);
+console.log("-->log ASSISTANT_INTEGRATION_ID : " + window.ASSISTANT_INTEGRATION_ID);
 console.log("-->log ASSISTANT_REGION : " + window.ASSISTANT_REGION);
-console.log(
-  "-->log ASSISTANT_SERVICE_INSTANCE_ID : " +
-    window.ASSISTANT_SERVICE_INSTANCE_ID
-);
+console.log("-->log ASSISTANT_SERVICE_INSTANCE_ID : " + window.ASSISTANT_SERVICE_INSTANCE_ID );
 
 // Your custom service desk integration which can be located anywhere in your codebase.
 class MyServiceDesk {

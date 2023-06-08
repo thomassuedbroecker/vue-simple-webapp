@@ -1,10 +1,11 @@
 #!/bin/bash
+source ./.env
 
 # **************** Global variables
 export ROOT_PATH=$(pwd)
 export CONTAINER_NAME=webapp-verification
 export IMAGE_NAME=webapp-local-verification:v1
-export CONTAINER_RUNTIME=podman
+export CONTAINER_RUNTIME=docker
 
 # **************** Verify container
 echo "************************************"
@@ -35,9 +36,9 @@ echo "************************************"
 
 $CONTAINER_RUNTIME run --name=$CONTAINER_NAME \
            -it \
-           -e ASSISTANT_INTEGRATION_ID="fb6dac0e-7249-4461-bf19-798d3b68505b" \
-           -e ASSISTANT_REGION="us-south" \
-           -e ASSISTANT_SERVICE_INSTANCE_ID="07061aa9-b6d8-427d-af36-947da5f8a12e" \
+           -e ASSISTANT_INTEGRATION_ID="${ASSISTANT_INTEGRATION_ID}" \
+           -e ASSISTANT_REGION="${ASSISTANT_REGION}" \
+           -e ASSISTANT_SERVICE_INSTANCE_ID="${ASSISTANT_SERVICE_INSTANCE_ID}" \
            -p 8080:8080 \
            $IMAGE_NAME
 
